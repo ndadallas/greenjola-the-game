@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jolagreen23 — 23 JOURS PLUS TARD</title>
+  <meta name="description" content="Jolagreen23 — 23 JOURS PLUS TARD. 23 titres avec Tiakola, La Mano 1.9 et La Fève, disponible partout. Press start.">
+  <meta name="theme-color" content="#030503">
+  <meta property="og:title" content="Jolagreen23 — 23 JOURS PLUS TARD">
+  <meta property="og:description" content="23 titres. 3 featurings. Press start.">
+  <meta property="og:image" content="assets/img/cover-23jpt.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bruno+Ace+SC&family=Courier+Prime:wght@400;700&family=Manrope:wght@400;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/logo-jolagreen.png">
+  <link rel="preload" as="image" href="assets/img/logo-23jours.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-screen="boot">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-cross" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 7.5l9 9M16.5 7.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-dpad" viewBox="0 0 24 24"><path d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spotify" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.5 9.2c3.8-1.1 8-.8 11.2 1M7.2 12.4c3.1-.9 6.6-.6 9.3.9M7.8 15.4c2.5-.7 5.1-.5 7.3.7" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-updown" viewBox="0 0 24 24"><path d="M12 3l5 6H7zM12 21l-5-6h10z" fill="currentColor"/></symbol>
+    <symbol id="i-leftright" viewBox="0 0 24 24"><path d="M3 12l6-5v10zM21 12l-6 5V7z" fill="currentColor"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+  </svg>
+
+  <main id="game" class="crt">
+
+    <!-- ============ BOOT ============ -->
+    <section class="screen is-active" id="boot" aria-label="Démarrage">
+      <div class="boot-step boot-console">
+        <p class="boot-console-name">GreenStation<sup>23</sup></p>
+      </div>
+      <div class="boot-step boot-rating">
+        <div class="rating-card">
+          <span class="rating-top">23CORP +17</span>
+          <span class="rating-m">M</span>
+          <span class="rating-bottom">MATURE</span>
+        </div>
+      </div>
+      <div class="boot-step boot-logos">
+        <div class="logo-row">
+          <img class="boot-logo boot-logo--23" src="assets/img/logo-23jours.png" alt="23 Jours Plus Tard">
+          <img class="boot-logo boot-logo--sig" src="assets/img/logo-jolagreen.png" alt="Jolagreen23">
+        </div>
+        <p class="boot-disclaimer"><b>AVERTISSEMENT</b> — ce site contient des effets de grésillement, de flash et de vibration.<br>Tu peux couper le filtre CRT, le son et les vibrations dans OPTIONS.</p>
+      </div>
+      <button class="skip" data-action="skip-boot">Passer</button>
+    </section>
+
+    <!-- ============ TITLE ============ -->
+    <section class="screen" id="title" aria-label="Écran titre">
+      <div class="bg bg--title" aria-hidden="true"></div>
+      <h1 class="brand">
+        <img class="brand-sig" src="assets/img/logo-jolagreen.png" alt="Jolagreen23">
+        <img class="brand-23" src="assets/img/logo-23jours.png" alt="23 Jours Plus Tard">
+      </h1>
+      <button class="press-start" data-action="start">PRESS <small>START</small> BUTTON</button>
+      <p class="title-legal">℗ 2026 23CorP, Label Blue Sky</p>
+    </section>
+
+    <!-- ============ MAIN MENU ============ -->
+    <section class="screen" id="menu" aria-label="Menu principal">
+      <div class="bg bg--menu" aria-hidden="true"></div>
+      <div class="menu-wrap">
+        <img class="menu-logo" src="assets/img/logo-jolagreen.png" alt="Jolagreen23">
+        <nav class="opt-list" aria-label="Menu">
+          <button class="opt" data-go="difficulty">NEW GAME</button>
+          <button class="opt opt--23" data-go="release" data-fx="disc">QUICK PLAY</button>
+          <button class="opt" data-go="albums">LOAD GAME</button>
+          <button class="opt" data-go="players">EXTRAS</button>
+          <button class="opt" data-go="shop">BOUTIQUE</button>
+          <button class="opt" data-go="options">OPTIONS</button>
+          <button class="opt" data-go="credits">EXIT GAME</button>
+        </nav>
+        <p class="menu-hint" data-menu-hint>Commence l'histoire depuis le bunker.</p>
+      </div>
+      <aside class="menu-preview" data-preview="menu" aria-live="polite"></aside>
+    </section>
+
+    <!-- ============ DIFFICULTY ============ -->
+    <section class="screen" id="difficulty" data-back="menu" aria-label="Difficulté">
+      <div class="bg bg--menu bg--cold" aria-hidden="true"></div>
+      <div class="menu-wrap">
+        <img class="menu-logo" src="assets/img/logo-23jours.png" alt="23 Jours Plus Tard">
+        <nav class="opt-list" aria-label="Choix de la difficulté">
+          <button class="opt" data-action="mode" data-mode="EASY JOLA">EASY JOLA</button>
+          <button class="opt" data-action="mode" data-mode="MEDIUM D BLOCK">MEDIUM D BLOCK</button>
+          <button class="opt" data-action="mode" data-mode="HARD GANG">HARD GANG</button>
+          <button class="opt opt--23" data-action="mode" data-mode="23 MODE">23 MODE</button>
+          <button class="opt opt--back" data-action="back">RETOUR</button>
+        </nav>
+      </div>
+      <aside class="menu-preview" data-preview="difficulty" aria-live="polite"></aside>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section class="screen" id="story" data-back="menu" aria-label="Prologue">
+      <canvas class="city" width="320" height="180" aria-hidden="true"></canvas>
+      <div class="story-head">
+        <p class="wide">“23 Jours Plus Tard...”</p>
+        <p class="wide wide--dim">Trouve les trois featurings<br>de l'album.</p>
+      </div>
+      <p class="story-mode">MODE : <span data-mode-label>MEDIUM D BLOCK</span></p>
+      <div class="dialog" aria-live="polite">
+        <p class="dialog-name">Jolagreen :</p>
+        <p class="dialog-text"></p>
+        <span class="dialog-next" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+      </div>
+      <p class="dialog-help">ENTER <svg><use href="#i-cross"/></svg></p>
+      <nav class="opt-list opt-list--story" aria-label="Suite">
+        <button class="opt" data-go="players" data-fx="vhs">SORTIR DU BUNKER</button>
+        <button class="opt opt--back" data-action="back">RETOUR</button>
+      </nav>
+    </section>
+
+    <!-- ============ ALBUMS (LOAD GAME) ============ -->
+    <section class="screen" id="albums" data-back="menu" aria-label="Discographie">
+      <div class="bg bg--cam bg--album" aria-hidden="true"></div>
+      <div class="hud" aria-hidden="true">
+        <span class="hud-tl">CAM // LOG1</span>
+        <span class="hud-tr"><span class="rec"></span>JOUR23</span>
+        <span class="hud-spotify"><svg><use href="#i-spotify"/></svg></span>
+        <span class="hud-bar"></span>
+        <div class="hud-br">
+          <span class="hud-big"><svg><use href="#i-arrow"/></svg>M1_23J*</span>
+          <span>STAGE_23</span><span>LEVEL // 23</span>
+          <span class="hud-tag">JOLAGREEN23</span>
+        </div>
+        <span class="hud-id">BOIS-COLOMBES // 23.03 // SAVE DATA x4</span>
+      </div>
+      <div class="albums-head">
+        <h2 class="wide wide--xl">Choose an album</h2>
+        <p class="wide album-title" data-album-title>“RECHERCHE&amp;DESTRUCTION”</p>
+        <p class="wide wide--dim album-desc" data-album-desc>Premier album · 15.12.2023 · 12 titres, avec Wallace Cleaver et Benny The Butcher.</p>
+        <p class="album-action" data-album-action>Entrée pour l'écouter sur Spotify</p>
+      </div>
+      <div class="album-row" role="list">
+        <a class="opt album" data-album="rd" role="listitem" href="https://open.spotify.com/album/7KbUIt8qVNwQK8WFze3nS4" target="_blank" rel="noopener">
+          <span class="album-tag">RECHERCHE&amp;DESTRUCTION</span>
+          <span class="album-art"><img data-slot src="assets/img/cover-rd.jpg" alt="Pochette RECHERCHE&amp;DESTRUCTION"></span>
+        </a>
+        <a class="opt album" data-album="xp" role="listitem" href="https://open.spotify.com/album/29t2X8bZK7I6MbpXV6BDX9" target="_blank" rel="noopener">
+          <span class="album-tag">+99XP</span>
+          <span class="album-art"><img data-slot src="assets/img/cover-99xp.jpg" alt="Pochette +99XP"></span>
+        </a>
+        <a class="opt album" data-album="goty" role="listitem" href="https://open.spotify.com/album/5duCZsXkb1PXNBNqtdeEO4" target="_blank" rel="noopener">
+          <span class="album-tag">GOTY EDITION</span>
+          <span class="album-art"><img data-slot src="assets/img/cover-goty.jpg" alt="Pochette GOTY EDITION"></span>
+        </a>
+        <button class="opt album album--locked" data-album="unknown" role="listitem">
+          <span class="album-tag">???</span>
+          <span class="album-art art-unknown"><canvas width="64" height="80" aria-hidden="true"></canvas><span class="nosignal">no signal</span></span>
+        </button>
+      </div>
+      <p class="toast" role="status"></p>
+    </section>
+
+    <!-- ============ PLAYERS (EXTRAS) ============ -->
+    <section class="screen" id="players" data-back="menu" aria-label="Featurings">
+      <div class="bg bg--cam feed" aria-hidden="true"><canvas class="feed-noise" width="160" height="90"></canvas></div>
+      <div class="hud hud--cam" aria-hidden="true">
+        <span class="hud-tl hud-icons"><span class="disc-ico"></span><span class="hud-chip">BLUE SKY</span></span>
+        <span class="hud-tr"><span class="rec"></span>REC <span data-cam-clock>00:23:00</span></span>
+        <span class="hud-spotify"><svg><use href="#i-spotify"/></svg></span>
+        <span class="hud-m23"><span class="hud-target"></span>M23</span>
+        <span class="hud-rating"><b>M</b><small>All videos are exclusive to Jolagreen23.<br>This content is a fan experience.</small></span>
+        <span class="hud-logos"><img src="assets/img/logo-jolagreen.png" alt=""><img src="assets/img/logo-23jours.png" alt=""></span>
+        <span class="crosshair"></span>
+        <span class="hud-scale"></span>
+        <span class="hud-meta">23JOURSPLUSTARD // <span data-cam-meta>PISTE 03</span></span>
+      </div>
+      <p class="player-cam" data-player-cam>CAM 01 // PLAYER 2</p>
+      <h2 class="player-name" data-player-name>TIAKOLA</h2>
+      <p class="player-track" data-player-track>LOCKED UP (feat. Tiakola) · piste 03 · 2:53</p>
+      <nav class="cam-tabs" aria-label="Caméras">
+        <button class="opt cam-tab" data-player="0">CAM 01</button>
+        <button class="opt cam-tab" data-player="1">CAM 02</button>
+        <button class="opt cam-tab" data-player="2">CAM 03</button>
+        <button class="opt cam-tab cam-tab--dlc" data-player="3">DLC</button>
+        <a class="opt cam-tab cam-tab--listen" data-player-link href="https://open.spotify.com/album/1x7JRkRLh5YBPq00I1bjKQ" target="_blank" rel="noopener"><svg><use href="#i-play"/></svg> ÉCOUTER</a>
+        <button class="opt cam-tab cam-tab--next" data-go="release" data-fx="card">SKIP <span class="skip-o"></span></button>
+      </nav>
+    </section>
+
+    <!-- ============ RELEASE ============ -->
+    <section class="screen" id="release" data-back="menu" aria-label="23 Jours Plus Tard">
+      <div class="bg bg--menu" aria-hidden="true"></div>
+      <div class="release-scroll release-layout">
+        <div class="release-side">
+        <div class="release-card">
+          <div class="release-sleeve"><span class="release-cd"></span><img class="release-cover" src="assets/img/cover-23jpt.jpg" alt="Pochette 23 JOURS PLUS TARD"></div>
+          <div class="release-txt">
+            <h2 class="release-logo"><img src="assets/img/logo-23jours.png" alt="23 JOURS PLUS TARD"></h2>
+            <p class="release-sub">DISPONIBLE SUR TOUTES LES PLATEFORMES</p>
+            <p class="release-date"><img class="release-sig" src="assets/img/logo-jolagreen.png" alt="">13.03.2026</p>
+            <p class="release-meta">23 titres · 1 h 03 · Label Blue Sky · 23CorP</p>
+          </div>
+        </div>
+        <nav class="opt-list opt-list--release" aria-label="Écouter l'album">
+          <a class="opt cta" href="https://open.spotify.com/album/1x7JRkRLh5YBPq00I1bjKQ" target="_blank" rel="noopener">SPOTIFY <svg><use href="#i-out"/></svg></a>
+          <a class="opt cta" href="https://music.apple.com/fr/album/23-jours-plus-tard/1876292921" target="_blank" rel="noopener">APPLE MUSIC <svg><use href="#i-out"/></svg></a>
+          <a class="opt cta" href="https://www.deezer.com/fr/album/916060621" target="_blank" rel="noopener">DEEZER <svg><use href="#i-out"/></svg></a>
+          <button class="opt cta cta--shop" data-go="shop">CD, CLÉ USB &amp; PACKS <svg><use href="#i-arrow"/></svg></button>
+        </nav>
+        </div>
+        <div class="release-main">
+
+        <div class="stages">
+          <p class="stages-head">STAGE SELECT <span>// 23 NIVEAUX · 3 PLAYERS</span></p>
+          <ol class="stage-list" data-stage-list="main"></ol>
+        </div>
+
+        <div class="stages">
+          <p class="stages-head">CINÉMATIQUES <span>// CLIPS OFFICIELS</span></p>
+          <div class="clips" data-clips></div>
+        </div>
+
+        <div class="stages stages--dlc">
+          <div class="dlc-head">
+            <img class="dlc-cover" src="assets/img/cover-extendo.jpg" alt="Pochette 23 JPT EXTENDO +">
+            <p class="stages-head"><span class="dlc-badge">DLC</span> 23 JPT EXTENDO + <span>// 26.06.2026 · 8 NIVEAUX BONUS · 21 MIN</span></p>
+          </div>
+          <ol class="stage-list" data-stage-list="dlc"></ol>
+          <nav class="dlc-links" aria-label="Écouter 23 JPT EXTENDO +">
+            <a class="opt cta cta--sm" href="https://open.spotify.com/album/3njbmPv3VW1wfBv5MrojCY" target="_blank" rel="noopener">SPOTIFY <svg><use href="#i-out"/></svg></a>
+            <a class="opt cta cta--sm" href="https://music.apple.com/fr/album/23-jpt-extendo/6779259494" target="_blank" rel="noopener">APPLE MUSIC <svg><use href="#i-out"/></svg></a>
+            <a class="opt cta cta--sm" href="https://www.deezer.com/fr/album/1003405571" target="_blank" rel="noopener">DEEZER <svg><use href="#i-out"/></svg></a>
+          </nav>
+        </div>
+
+        <button class="opt opt--back" data-action="back">RETOUR</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHOP ============ -->
+    <section class="screen" id="shop" data-back="menu" aria-label="Boutique">
+      <div class="bg bg--menu" aria-hidden="true"></div>
+      <div class="release-scroll">
+        <div class="shop-head">
+          <h2 class="wide wide--xl">Item shop</h2>
+          <p class="wide wide--dim">Boutique officielle — jolagreen23.com</p>
+        </div>
+        <div class="shop-grid" data-shop></div>
+        <button class="opt opt--back" data-action="back">RETOUR</button>
+      </div>
+    </section>
+
+    <!-- ============ OPTIONS ============ -->
+    <section class="screen" id="options" data-back="menu" aria-label="Options">
+      <div class="options-wrap">
+        <h2 class="wide wide--xl">Options</h2>
+        <nav class="opt-list opt-list--options" aria-label="Réglages">
+          <button class="opt opt-toggle" data-action="toggle" data-key="sound">SON <span class="val"></span></button>
+          <button class="opt opt-toggle" data-action="toggle" data-key="crt">FILTRE CRT <span class="val"></span></button>
+          <button class="opt opt-toggle" data-action="toggle" data-key="rumble">VIBRATIONS <span class="val"></span></button>
+          <button class="opt" data-action="reset">EFFACER LA SAUVEGARDE</button>
+          <button class="opt opt--back" data-action="back">RETOUR</button>
+        </nav>
+        <div class="memcard">
+          <span class="memcard-chip"></span>
+          <div>
+            <p>MEMORY CARD (8MB) — SLOT 1</p>
+            <p class="memcard-dim">JOLAGREEN23 · <span data-save>AUCUNE SAUVEGARDE</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CREDITS ============ -->
+    <section class="screen" id="credits" data-back="title" aria-label="Crédits">
+      <div class="credits-roll">
+        <p class="cr-h">CREDITS :</p>
+        <img class="cr-logo" src="assets/img/logo-jolagreen.png" alt="Jolagreen23">
+        <p>23 JOURS PLUS TARD</p>
+        <p>13.03.2026 — Label Blue Sky · 23CorP</p>
+        <p class="cr-s">players</p>
+        <p><b>Tiakola</b> — LOCKED UP</p>
+        <p><b>La Mano 1.9</b> — 2319</p>
+        <p><b>La Fève</b> — JOLAF</p>
+        <p class="cr-s">dlc</p>
+        <p><b>Josman</b> — FOKONKITTELEBANDO</p>
+        <p class="cr-s">discographie</p>
+        <p>RECHERCHE&amp;DESTRUCTION — 2023</p>
+        <p>+99XP — 2024</p>
+        <p>GOTY EDITION — 2025</p>
+        <p>23 JOURS PLUS TARD — 2026</p>
+        <p>23 JPT EXTENDO + — 2026</p>
+        <p class="cr-s">le jeu</p>
+        <p>direction artistique, motion &amp; développement : <b>apo</b></p>
+        <p>d'après le trailer <b>GREENJOLA — THE GAME</b></p>
+        <p class="cr-s">et surtout</p>
+        <p class="cr-big">LA COMMU 23</p>
+        <img class="cr-logo cr-logo--23" src="assets/img/logo-23jours.png" alt="23 Jours Plus Tard">
+        <p class="cr-end">THANKS FOR PLAYING</p>
+      </div>
+      <button class="skip" data-action="back">Retour au titre</button>
+    </section>
+
+    <!-- ============ OVERLAYS ============ -->
+    <canvas id="static" width="192" height="108" aria-hidden="true"></canvas>
+    <div id="loader" aria-hidden="true">
+      <div class="disc"><img class="disc-face" src="assets/img/cover-23jpt.jpg" alt=""></div>
+      <div class="loader-bar"><span></span></div>
+      <p class="loader-mem">Ne retirez pas la memory card (8MB).</p>
+    </div>
+    <div id="corner-load" aria-hidden="true"><img src="assets/img/cover-23jpt.jpg" alt=""></div>
+    <div id="vhs" aria-hidden="true"></div>
+    <div id="blackout" aria-hidden="true"></div>
+    <div id="title-card" aria-hidden="true"><p>23 JOURS PLUS TARD</p></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <button class="home-btn" data-action="home" aria-label="Retour à l'accueil">
+      <svg><use href="#i-home"/></svg><span data-home-label>ACCUEIL</span><kbd>H</kbd>
+    </button>
+
+    <footer class="pad-hints" aria-hidden="true">
+      <span>SELECT <svg class="x"><use href="#i-cross"/></svg></span>
+      <span data-hint-axis>UP/DOWN <svg><use href="#i-updown"/></svg></span>
+    </footer>
+  </main>
+
+  <script src="js/fx.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
