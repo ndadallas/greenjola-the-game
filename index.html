@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jolagreen23 — 23 JOURS PLUS TARD</title>
   <meta name="description" content="Jolagreen23 — 23 JOURS PLUS TARD. 23 titres avec Tiakola, La Mano 1.9 et La Fève, disponible partout. Press start.">
+  <meta name="author" content="Dallas">
   <meta name="theme-color" content="#030503">
   <meta property="og:title" content="Jolagreen23 — 23 JOURS PLUS TARD">
   <meta property="og:description" content="23 titres. 3 featurings. Press start.">
@@ -34,6 +35,7 @@
   </svg>
 
   <main id="game" class="crt">
+    <canvas id="world" aria-hidden="true"></canvas>
 
     <!-- ============ BOOT ============ -->
     <section class="screen is-active" id="boot" aria-label="Démarrage">
@@ -66,6 +68,7 @@
       </h1>
       <button class="press-start" data-action="start">PRESS <small>START</small> BUTTON</button>
       <p class="title-legal">℗ 2026 23CorP, Label Blue Sky</p>
+      <p class="title-sig">site by <b>Dallas</b> · inspired by JolaTheGame</p>
     </section>
 
     <!-- ============ MAIN MENU ============ -->
@@ -297,8 +300,8 @@
         <p>23 JOURS PLUS TARD — 2026</p>
         <p>23 JPT EXTENDO + — 2026</p>
         <p class="cr-s">le jeu</p>
-        <p>direction artistique, motion &amp; développement : <b>apo</b></p>
-        <p>d'après le trailer <b>GREENJOLA — THE GAME</b></p>
+        <p>design &amp; développement du site : <b>Dallas</b></p>
+        <p>inspired by <b>JolaTheGame</b></p>
         <p class="cr-s">et surtout</p>
         <p class="cr-big">LA COMMU 23</p>
         <img class="cr-logo cr-logo--23" src="assets/img/logo-23jours.png" alt="23 Jours Plus Tard">
@@ -330,6 +333,7 @@
     </footer>
   </main>
 
+  <script type="module" src="js/world.js"></script>
   <script src="js/fx.js"></script>
   <script src="js/main.js"></script>
 </body>

@@ -1531,3 +1531,66 @@ body[data-mode="23 MODE"] .grain { opacity: .12; }
   #credits.is-active .credits-roll { animation: none; position: static; translate: none; margin: 4rem auto; }
   #credits { overflow-y: auto; place-items: start center; }
 }
+
+/* =========================================================
+   DÉCOR 3D (js/world.js) : la ville tourne derrière tous les écrans.
+   Actif seulement si WebGL a démarré (body.has-world), sinon les fonds CSS ci-dessus restent.
+   ========================================================= */
+#world {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated; /* rendu mi-résolution agrandi = grain PS2 */
+  opacity: 0;
+  transition: opacity 1.4s ease, filter .6s ease;
+}
+.has-world #world { opacity: 1; }
+body.has-world[data-screen="boot"] #world,
+body.has-world[data-screen="story"] #world { opacity: 0; }
+
+/* les écrans deviennent transparents : seuls voiles et vignettes restent par-dessus la 3D */
+.has-world #title,
+.has-world #players,
+.has-world #release,
+.has-world #shop,
+.has-world #options,
+.has-world #credits { background: transparent; }
+.has-world .bg { background: transparent; }
+.has-world .bg::before { display: none; }
+.has-world .bg--menu::after { background: radial-gradient(ellipse 120% 90% at 50% 50%, rgba(0,0,0,.15) 30%, rgba(0,0,0,.78)); }
+.has-world .bg--title::after { background: linear-gradient(to top, rgba(0,0,0,.65), transparent 45%), radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.6)); }
+/* panneaux de lecture : un voile sombre derrière les textes longs */
+.has-world #menu .bg--menu::after,
+.has-world #difficulty .bg--menu::after { background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.55) 100%); }
+.has-world #release .bg--menu::after,
+.has-world #shop .bg--menu::after { background: rgba(2,6,3,.62); }
+.has-world #options { background: rgba(0,0,0,.45); }
+.has-world #credits::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 40% 70% at 50% 50%, rgba(0,0,0,.6), rgba(0,0,0,.2)); }
+
+/* caméras de surveillance : flux monochrome froid, légère courbure */
+body.has-world[data-screen="albums"] #world,
+body.has-world[data-screen="players"] #world { filter: grayscale(1) sepia(.35) hue-rotate(150deg) saturate(1.6) contrast(1.15) brightness(.9); }
+body.has-world[data-screen="albums"] #world { filter: grayscale(.55) contrast(1.15) brightness(.95); } /* garde la teinte de l'album */
+.has-world .bg--cam { background: radial-gradient(ellipse 90% 80% at 50% 45%, transparent 50%, rgba(0,0,0,.55)); }
+.has-world .feed-noise { opacity: .1; }
+
+/* signature */
+#title { grid-template-rows: 1fr auto auto auto; }
+.title-sig {
+  position: relative;
+  z-index: 2;
+  grid-row: 4;
+  margin: -.6rem 0 1.4rem;
+  font-family: var(--f-hud);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(166,255,143,.55);
+}
+.title-sig b { color: var(--green-hot); font-weight: 400; text-shadow: 0 0 8px rgba(92,255,79,.6); }
+/* sélection d'album : la teinte devient un voile, la ville reste visible derrière */
+.has-world #albums .bg--album { background: radial-gradient(ellipse 80% 70% at 30% 70%, var(--tint, rgba(92,255,79,.14)), transparent 70%), rgba(0,0,0,.35); }
+#albums[data-tint="rd"] { --tint: rgba(231,55,68,.28); }
+#albums[data-tint="xp"] { --tint: rgba(63,94,255,.28); }
+#albums[data-tint="goty"] { --tint: rgba(255,255,255,.12); }
