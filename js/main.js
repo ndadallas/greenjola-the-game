@@ -802,11 +802,7 @@
   const start = location.hash.slice(1);
   if (isScreen(start) && !['boot', 'title', 'story'].includes(start)) {
     go(start, { fx: 'fade', push: false, url: 'none' }); // lien partagé : on arrive directement sur l'écran
-  } else if (settings.seenBoot) {
-    go('title', { fx: 'fade', push: false }); // déjà venu : pas de séquence de démarrage
   } else {
-    settings.seenBoot = true;
-    save();
     runBoot();
   }
 })();
