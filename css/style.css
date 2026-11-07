@@ -1594,3 +1594,107 @@ body.has-world[data-screen="albums"] #world { filter: grayscale(.55) contrast(1.
 #albums[data-tint="rd"] { --tint: rgba(231,55,68,.28); }
 #albums[data-tint="xp"] { --tint: rgba(63,94,255,.28); }
 #albums[data-tint="goty"] { --tint: rgba(255,255,255,.12); }
+
+/* =========================================================
+   BARRE DE NAVIGATION FIXE : chaque partie du site à un clic, depuis n'importe quel écran
+   ========================================================= */
+.topnav {
+  position: fixed;
+  z-index: 70;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(.8rem, 2vw, 2rem);
+  padding: .7rem clamp(.8rem, 2.4vw, 1.6rem) 1.6rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,.45) 60%, transparent);
+  transition: opacity .35s ease, transform .35s ease;
+}
+body[data-screen="boot"] .topnav,
+body[data-screen="title"] .topnav,
+body[data-screen="credits"] .topnav { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+.topnav-logo { flex: none; display: block; padding: .2rem; }
+.topnav-logo img { height: 30px; width: auto; filter: drop-shadow(0 0 6px rgba(255,255,255,.55)); transition: filter .2s; }
+.topnav-logo:hover img { filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 14px rgba(92,255,79,.8)); }
+.topnav-links {
+  display: flex;
+  gap: .3rem;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.topnav-links::-webkit-scrollbar { display: none; }
+.topnav-links button {
+  flex: none;
+  position: relative;
+  padding: .55rem .8rem;
+  font-family: var(--f-hud);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(241,245,238,.62);
+  border: 1px solid transparent;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.topnav-links button:hover { color: #fff; border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.05); }
+.topnav-links button::after { /* trait vert sous l'onglet actif */
+  content: "";
+  position: absolute;
+  left: .8rem; right: .8rem; bottom: .25rem;
+  height: 2px;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  transform: scaleX(0);
+  transition: transform .25s var(--ease);
+}
+body[data-screen="release"] [data-nav="release"],
+body[data-screen="albums"] [data-nav="albums"],
+body[data-screen="players"] [data-nav="players"],
+body[data-screen="shop"] [data-nav="shop"],
+body[data-screen="difficulty"] [data-nav="difficulty"],
+body[data-screen="story"] [data-nav="difficulty"],
+body[data-screen="options"] [data-nav="options"] { color: var(--green-hot); }
+body[data-screen="release"] [data-nav="release"]::after,
+body[data-screen="albums"] [data-nav="albums"]::after,
+body[data-screen="players"] [data-nav="players"]::after,
+body[data-screen="shop"] [data-nav="shop"]::after,
+body[data-screen="difficulty"] [data-nav="difficulty"]::after,
+body[data-screen="story"] [data-nav="difficulty"]::after,
+body[data-screen="options"] [data-nav="options"]::after { transform: scaleX(1); }
+
+/* le contenu descend sous la barre */
+.hud { top: 4.6rem; }
+.hud-bar { display: none; }
+.release-scroll { padding-top: 5.5rem; }
+#menu .menu-logo { display: none; } /* le logo est déjà dans la barre */
+@media (min-width: 900px) { .albums-head { top: 6rem; } }
+
+/* menu : chaque entrée dit où elle mène */
+.opt-sub {
+  display: block;
+  margin-top: .15rem;
+  font-family: var(--f-hud);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(166,255,143,.45);
+  text-shadow: none;
+  transition: color .15s;
+}
+.opt.is-focus .opt-sub { color: var(--green-hot); }
+
+@media (max-width: 700px) {
+  .topnav { padding: .5rem .6rem 1.2rem; gap: .5rem; }
+  .topnav-logo img { height: 24px; }
+  .topnav-links { margin-left: 0; mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .topnav-links button { padding: .5rem .55rem; font-size: .68rem; letter-spacing: .1em; }
+  .hud { top: 3.8rem; }
+}
+/* aides manette : masquées sur les pages qui défilent (elles passaient sur le contenu) et au tactile */
+body[data-screen="release"] .pad-hints,
+body[data-screen="shop"] .pad-hints { opacity: 0; }
+@media (hover: none) { .pad-hints { display: none; } }
+@media (max-width: 700px) {
+  .albums-head { top: 5.6rem; }
+  .hud-tl, .hud-tr { display: none; } /* la barre de navigation prend le haut de l'écran */
+}
+@media (max-width: 700px) { .home-btn { display: none; } } /* le logo de la barre ramène au menu */

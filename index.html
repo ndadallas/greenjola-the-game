@@ -77,13 +77,13 @@
       <div class="menu-wrap">
         <img class="menu-logo" src="assets/img/logo-jolagreen.png" alt="Jolagreen23">
         <nav class="opt-list" aria-label="Menu">
-          <button class="opt" data-go="difficulty">NEW GAME</button>
-          <button class="opt opt--23" data-go="release" data-fx="disc">QUICK PLAY</button>
-          <button class="opt" data-go="albums">LOAD GAME</button>
-          <button class="opt" data-go="players">EXTRAS</button>
-          <button class="opt" data-go="shop">BOUTIQUE</button>
-          <button class="opt" data-go="options">OPTIONS</button>
-          <button class="opt" data-go="credits">EXIT GAME</button>
+          <button class="opt" data-go="difficulty">NEW GAME <small class="opt-sub">l'histoire</small></button>
+          <button class="opt opt--23" data-go="release" data-fx="disc">QUICK PLAY <small class="opt-sub">l'album</small></button>
+          <button class="opt" data-go="albums">LOAD GAME <small class="opt-sub">discographie</small></button>
+          <button class="opt" data-go="players">EXTRAS <small class="opt-sub">featurings</small></button>
+          <button class="opt" data-go="shop">BOUTIQUE <small class="opt-sub">CD &amp; packs</small></button>
+          <button class="opt" data-go="options">OPTIONS <small class="opt-sub">réglages</small></button>
+          <button class="opt" data-go="credits">EXIT GAME <small class="opt-sub">crédits</small></button>
         </nav>
         <p class="menu-hint" data-menu-hint>Commence l'histoire depuis le bunker.</p>
       </div>
@@ -322,6 +322,18 @@
     <div id="blackout" aria-hidden="true"></div>
     <div id="title-card" aria-hidden="true"><p>23 JOURS PLUS TARD</p></div>
     <div class="grain" aria-hidden="true"></div>
+
+    <nav class="topnav" aria-label="Navigation du site">
+      <button class="topnav-logo" data-nav="menu" aria-label="Menu principal"><img src="assets/img/logo-jolagreen.png" alt=""></button>
+      <div class="topnav-links">
+        <button data-nav="release">L'album</button>
+        <button data-nav="albums">Discographie</button>
+        <button data-nav="players">Featurings</button>
+        <button data-nav="shop">Boutique</button>
+        <button data-nav="difficulty">Histoire</button>
+        <button data-nav="options">Options</button>
+      </div>
+    </nav>
 
     <button class="home-btn" data-action="home" aria-label="Retour à l'accueil">
       <svg><use href="#i-home"/></svg><span data-home-label>ACCUEIL</span><kbd>H</kbd>

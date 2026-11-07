@@ -123,7 +123,7 @@
   const titleCard = $('#title-card');
   const D = (ms) => (reduceMotion ? Math.min(ms, 150) : ms);
 
-  async function go(id, { fx = 'dip', push = true } = {}) {
+  async function go(id, { fx = 'dip', push = true, url = push ? 'push' : 'replace' } = {}) {
     if (busy || id === current) return;
     busy = true;
     const from = screenEl(current);
@@ -134,15 +134,15 @@
       loader.classList.remove('is-on');
       void loader.offsetWidth;
       loader.classList.add('is-on');
-      await wait(D(2600));
-      swap(from, to, id, push);
+      await wait(D(1300));
+      swap(from, to, id, push, url);
       loader.classList.remove('is-on');
     } else if (fx === 'corner') {
       blackout.classList.add('is-on');
       await wait(D(260));
       cornerLoad.classList.add('is-on');
-      await wait(D(1500));
-      swap(from, to, id, push);
+      await wait(D(650));
+      swap(from, to, id, push, url);
       cornerLoad.classList.remove('is-on');
       await wait(D(120));
       blackout.classList.remove('is-on');
@@ -151,7 +151,7 @@
       vhs.classList.add('is-on');
       game.classList.add('is-vhs');
       await wait(D(520));
-      swap(from, to, id, push);
+      swap(from, to, id, push, url);
       await wait(D(380));
       vhs.classList.remove('is-on');
       game.classList.remove('is-vhs');
@@ -163,21 +163,21 @@
       titleCard.classList.add('is-on');
       vhs.classList.remove('is-on');
       game.classList.remove('is-vhs');
-      await wait(D(1600));
-      swap(from, to, id, push);
+      await wait(D(900));
+      swap(from, to, id, push, url);
       titleCard.classList.remove('is-on');
     } else if (fx === 'fade') {
-      swap(from, to, id, push);
+      swap(from, to, id, push, url);
     } else if (fx === 'static') {
       sfx.static();
       const b = burst(340);
       await wait(D(150));
-      swap(from, to, id, push);
+      swap(from, to, id, push, url);
       await b;
     } else {
       blackout.classList.add('is-on', 'is-fast');
       await wait(D(200));
-      swap(from, to, id, push);
+      swap(from, to, id, push, url);
       await wait(D(60));
       blackout.classList.remove('is-on');
       await wait(D(200));
@@ -186,8 +186,12 @@
     busy = false;
   }
 
-  function swap(from, to, id, push) {
+  function swap(from, to, id, push, url = 'replace') {
     if (push) historyStack.push(current);
+    const hash = id === 'boot' || id === 'title' ? '' : '#' + id;
+    if (url !== 'none' && location.hash !== hash) {
+      try { history[url === 'push' ? 'pushState' : 'replaceState'](null, '', hash || location.pathname + location.search); } catch (e) { /* file:// */ }
+    }
     from.classList.remove('is-active');
     to.classList.add('is-active');
     current = id;
@@ -478,7 +482,8 @@
     swapTimer = setTimeout(() => {
       $('[data-album-title]').textContent = ALBUMS[key].title;
       $('[data-album-desc]').textContent = ALBUMS[key].desc;
-      $('[data-album-action]').textContent = ALBUMS[key].action;
+      const touch = matchMedia('(hover: none)').matches;
+      $('[data-album-action]').textContent = touch ? ALBUMS[key].action.replace('Entrée', 'Touche la pochette') : ALBUMS[key].action;
       scr.classList.remove('is-swap');
     }, 160);
   }
@@ -669,6 +674,11 @@
   game.addEventListener('click', (e) => {
     if (e.detail === 0 && !programmatic) { if (!e.target.closest('a')) e.preventDefault(); return; }
     if (busy) return;
+    const nav = e.target.closest('[data-nav]');
+    if (nav) {
+      if (nav.dataset.nav !== current) { sfx.select(); go(nav.dataset.nav, { fx: 'dip' }); }
+      return;
+    }
     if (current === 'title') { startGame(); return; }
     if (e.target.closest('.home-btn')) { goHome(); return; }
     const el = e.target.closest('[data-go], [data-action], .album, .cam-tab, .clip, a.opt');
@@ -781,5 +791,22 @@
   if (settings.mode) setMode(settings.mode);
   renderOptions();
   renderSave();
-  runBoot();
+
+  const isScreen = (id) => !!id && !!document.getElementById(id) && document.getElementById(id).classList.contains('screen');
+  window.addEventListener('popstate', () => {
+    const id = location.hash.slice(1);
+    historyStack.pop();
+    go(isScreen(id) ? id : 'title', { push: false, url: 'none' });
+  });
+
+  const start = location.hash.slice(1);
+  if (isScreen(start) && !['boot', 'title', 'story'].includes(start)) {
+    go(start, { fx: 'fade', push: false, url: 'none' }); // lien partagé : on arrive directement sur l'écran
+  } else if (settings.seenBoot) {
+    go('title', { fx: 'fade', push: false }); // déjà venu : pas de séquence de démarrage
+  } else {
+    settings.seenBoot = true;
+    save();
+    runBoot();
+  }
 })();

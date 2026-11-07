@@ -155,11 +155,33 @@ rainGeo.setAttribute('position', new THREE.BufferAttribute(rainPos, 3));
 const rain = new THREE.Points(rainGeo, new THREE.PointsMaterial({ color: 0xa6ff8f, size: 0.18, transparent: true, opacity: 0.55 }));
 scene.add(rain);
 
+// ---------- ciel : dégradé horizon -> nuit + étoiles (suit la couleur du brouillard) ----------
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite: false, fog: false,
+  uniforms: { horizon: { value: new THREE.Color() }, top: { value: new THREE.Color('#000000') } },
+  vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+  fragmentShader: `uniform vec3 horizon; uniform vec3 top; varying vec3 vP;
+    void main(){ float h = clamp(vP.y, 0.0, 1.0);
+      vec3 c = mix(horizon * 3.2 + vec3(0.0, 0.025, 0.01), top, pow(h, 0.38));
+      gl_FragColor = vec4(c, 1.0); }`,
+});
+const sky = new THREE.Mesh(new THREE.SphereGeometry(320, 32, 16), skyMat);
+scene.add(sky);
+const starPos = [];
+for (let i = 0; i < 900; i++) {
+  const a = Math.random() * Math.PI * 2, y = 0.15 + Math.random() * 0.85, r = Math.sqrt(1 - y * y);
+  starPos.push(Math.cos(a) * r * 300, y * 300, Math.sin(a) * r * 300);
+}
+const starGeo = new THREE.BufferGeometry();
+starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xd8ffe0, size: 1.4, sizeAttenuation: false, transparent: true, opacity: 0.7, fog: false }));
+scene.add(stars);
+
 // ---------- plans de caméra par écran ----------
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const SHOTS = { // rues : x ou z = ±10, ±30… (entre les blocs)
   boot:       { pos: V(0, 140, 0.1), look: V(0, 0, 0), fog: '#000000', density: 0.05 },
-  title:      { pos: V(-10, 7, 95), look: V(-4, 17, 0), fog: '#06160b', density: 0.016, fly: 1 },
+  title:      { pos: V(0, 52, 245), look: V(0, 40, 0), fog: '#06160b', density: 0.0052, push: 60 },
   menu:       { pos: V(-62, 16, 62), look: V(0, 8, 0), fog: '#05120a', density: 0.014, orbit: 0.025 },
   difficulty: { pos: V(40, 38, -48), look: V(0, 22, 0), fog: '#061014', density: 0.016, orbit: -0.02 },
   story:      { pos: V(-10, 3, 40), look: V(0, 6, 0), fog: '#020402', density: 0.05 },
@@ -232,6 +254,7 @@ function frame() {
     goalPos.x = Math.cos(a) * r;
     goalPos.z = Math.sin(a) * r;
   }
+  if (s.push) goalPos.z = s.pos.z - s.push * (1 - Math.exp(-shotTime / 25)); // travelling avant qui ralentit
   if (s.fly) goalPos.z = s.pos.z - ((shotTime * 2.2) % 40); // avance dans l'avenue ; le saut de boucle se perd dans le brouillard
   if (s.sway) { goalPos.x += Math.sin(shotTime * 0.2) * 2.5; goalPos.y += Math.sin(shotTime * 0.31) * 1.2; }
   if (s.rise) goalPos.y = s.pos.y + Math.min(shotTime * 1.2, 60);
@@ -250,6 +273,9 @@ function frame() {
   scene.fog.color.lerp(targetFog, 1 - Math.pow(0.02, dt));
   scene.fog.density = state.density;
   scene.background.copy(scene.fog.color);
+  skyMat.uniforms.horizon.value.copy(scene.fog.color);
+  sky.position.copy(camera.position);
+  stars.position.copy(camera.position);
 
   camera.position.copy(state.pos);
   camera.lookAt(state.look);
